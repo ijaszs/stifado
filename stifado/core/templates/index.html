@@ -10,7 +10,7 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>Stifado | Delivery,Ecommerce &amp; Business Templatee</title>
+    <title>Stifado | Delivery </title>
 
     <!-- ===============================================-->
     <!--    Favicons-->
@@ -27,10 +27,8 @@
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
-    <link href="{% static "css/main.css" %} "rel="stylesheet" />
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    
+    <link href="{% static 'css/theme.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/zoom.css' %}" rel="stylesheet" />
   </head>
 
   <body>
@@ -990,12 +988,12 @@
           <hr class="border border-800" />
           <div class="row flex-center pb-3">
             <div class="col-md-6 order-0">
-              <p class="text-200 text-center text-md-start">All rights Reserved &copy; stifado, 2024</p>
+              <p class="text-200 text-center text-md-start">All rights Reserved &copy; Stifado Company, 2021</p>
             </div>
             <div class="col-md-6 order-1">
               <p class="text-200 text-center text-md-end"> Made with&nbsp;<svg class="bi bi-suit-heart-fill" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#FFB30E" viewBox="0 0 16 16">
                   <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
-                </svg>&nbsp;by&nbsp;<a class="text-200 fw-bold" href="#" target="_blank">stifado </a></p>
+                </svg>&nbsp;by&nbsp;<a class="text-200 fw-bold" href="https://themewagon.com/" target="_blank">Stifado </a></p>
             </div>
           </div>
         </div><!-- end of .container-->
@@ -1011,12 +1009,12 @@
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    <script src="vendors/@popperjs/popper.min.js"></script>
-    <script src="vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="vendors/is/is.min.js"></script>
+    <script src="{% static 'js/popper.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/is.min.js'%}"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="vendors/fontawesome/all.min.js"></script>
-    <script src="assets/js/theme.js"></script>
+    <script src="{% static 'js/fontawesome.all.min.js'%}"></script>
+    <script src="{% static 'js/theme.js'%}"></script>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap" rel="stylesheet">
   </body>
 
