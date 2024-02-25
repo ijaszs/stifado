@@ -4313,7 +4313,7 @@ textarea.form-control-lg {
 	word-wrap: break-word;
 	background-color: #FFFEFE;
 	background-clip: border-box;
-	border: 1px solid rgba(0, 0, 0, 0.125);
+	border: px solid rgba(0, 0, 0, 0.125);
 	border-radius: .5rem
 }
 .card>hr {
