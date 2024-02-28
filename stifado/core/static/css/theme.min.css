@@ -16412,3 +16412,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .majestic-tabs .nav-link.active, .majestic-tabs .nav-item.show .nav-link {
 	border-bottom-color: #F17228
 }
+/* new styls */
+.login-container {
+	margin-top: 100px;
+  }

@@ -8,7 +8,7 @@ from django.db import models
 #     title = models.CharField( max_length=255)
 #     price = models.FloatField()
 #     description= models.TextField()
-#     image= models.ImageField(upload_to="/images")
+#     image= models.ImageField(upload_to="/uplode")
 #     priority =models.IntegerField(default=0)
 #     delete_status= models.IntegerField(choices=DELETE_CHOICES,default='live')
 #     created_at = models.DateTimeField(auto_now_add=True)

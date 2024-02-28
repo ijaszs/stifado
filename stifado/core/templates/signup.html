@@ -18,7 +18,8 @@
     <div class="row justify-content-center login-container">
         <div class="col-md-5 mt-6">
         <div class="card">
-          <h6 class="fw-bold text-danger text-center fs-2 fs-lg-2 lh-sm my-3">Login</h6>
+          <h6 class="fw-bold text-danger text-center fs-2 fs-lg-2 lh-sm my-3">Sing up</h6>
+          <hr>
           
             <div class="card-body">
             <form>
@@ -26,30 +27,23 @@
                 <label for="username">Username</label>
                 <input type="text" class="form-control input-box form-foodwagon-control" id="username" placeholder="Enter username">
                 </div>
-                <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control input-box form-foodwagon-control" id="password" placeholder="Password">
-                </div>
-                <div class="row mb-4">
-                  <div class="col d-flex justify-content-center">
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                      <label class="form-check-label" for="form2Example31"> Remember me </label>
-                    </div>
-                  </div>
               
-                  <div class="col">
-                    <!-- Simple link -->
-                    <a href="#!">Forgot password?</a>
+                <div class="form-group">
+                <label for="password">Email</label>
+                <input type="email" class="form-control input-box form-foodwagon-control" id="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <label for="username">Password</label>
+                  <input type="password" class="form-control input-box form-foodwagon-control" id="username" placeholder="Enter username">
                   </div>
-                </div>
+                
+                  <div class="form-group">
+                  <label for="password"> Repeate your Password</label>
+                  <input type="password" class="form-control input-box form-foodwagon-control" id="password" placeholder="Password">
+                  </div>
+               
                 <button  type="submit" class="btn btn-white btn-block" style="color: #fff ; border-color: #F17228; background-color: #F17228;">Login</button>
-                <div class="text-center">
-                  <p> Not a member? <br>
-                    <a href="{% url 'signup'%}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Register</a></p>
-                  
-                </div>
+                
             </form>
             </div>
         </div>
