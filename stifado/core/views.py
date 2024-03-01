@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 def index(request):
+
     return render(request,"index.html")
 
 def login(request):
@@ -16,3 +18,12 @@ def cart(request):
 
 def prodect_list(request):
     return render(request,"prodect_list.html") 
+
+def authViews(request):
+    if request.method == "POST":
+     form = UserCreationForm(request.post or None)
+     if form.is_valid():
+         form.save()
+    else:
+     form = UserCreationForm()
+    return render(request,"registration/signup.html",{"form":form}) 
