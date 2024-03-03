@@ -17,6 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -83,9 +84,7 @@ DATABASES = {
         'PASSWORD': 'muhammedijas123', 
         'HOST': '127.0.0.1',  
         'PORT': '3306',  
-        'OPTIONS': {  
-        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-    }
+        
 }
 }
 
@@ -132,5 +131,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/media/'
-LOGIN_REDIRECT_URL = "base:home"
-LOGOUT_REDIRECT_URL = "base:login"
+
