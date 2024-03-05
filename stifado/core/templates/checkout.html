@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+  /* Table Styling*/
+  /* CSS styles */
+/* Table Styling*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color: transparent;
+    color: white;
+}
+
+thead {
+    background-color: #cb9a27;
+    color: #fff;
+}
+
+th,
+td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Checkout Form Styling */
+.checkout-form {
+    background-color: #f6f6f6;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.checkout-form h3 {
+    color: #403212;
+    border-bottom: 2px solid #403212;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.checkout-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #403212;
+}
+
+.checkout-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.order-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffbe33;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.order-btn:hover {
+    background-color: #8b7545;
+}
+
+/* Summary Table Styling */
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.summary-table th,
+.summary-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.summary-table th {
+    background-color: #a1894e;
+    color: #fff;
+}
+
+.summary-table td {
+    background-color:transparent;
+    color: black;
+}
+
+</style>
+
+
+ 
+ <!-- checkout section -->
+ <body class="sub_page">
+   <section class="food_section layout_padding">
+     <div class="container">
+       <div class="heading_container heading_center">
+         <h2>Checkout</h2>
+       </div>
+ 
+       <table class="summary-table">
+         <thead>
+           <tr>
+             <th>Product Image</th>
+             <th>Product Title</th>
+             <th>Price</th>
+             <th>Quantity</th>
+             <th>SubTotal</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>
+               <img src="{% static 'images/discount-item-1.png' %}" alt="itemproducttitle" style="max-width: 50px; height: 50px;">
+             </td>
+             <td>veg.salad</td>
+             <td class="cost">$12.4</td>
+             <td>2</td>
+             <td class="total">$24.8</td>
+           </tr>
+           <tr id="subtotal">
+             <td colspan="3" style="text-align:right; font-weight:bold; font-size: 25px;">Total:</td>
+             <td colspan="2">$24.8</td>
+           </tr>
+         </tbody>
+       </table>
+ 
+       <div class="checkout-form">
+         <form method="post" action="{% url 'checkout' %}">
+           <h3>Shipping Details</h3>
+           <label for="full_name">Full Name</label>
+           <input type="text" id="full_name" name="full_name" required>
+ 
+           <label for="email">Email</label>
+           <input type="text" id="email" name="email" required>
+ 
+           <label for="phone_number">Phone Number</label>
+           <input type="text" id="phone_number" name="phone_number" required>
+ 
+           <input type="submit" value="Place Order" class="order-btn">
+         </form>
+       </div>
+ 
+     </div>
+   </section>
+ </body>
+
+ 
+
+ 
+  <!-- end checkout section -->
+{% endblock %}
