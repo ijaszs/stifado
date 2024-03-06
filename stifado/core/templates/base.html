@@ -24,17 +24,7 @@
     <link rel="manifest" href="{% static 'json/manifest.json'%}">
     <meta name="msapplication-TileImage" content="{% static 'images/mstile-150x150.png'%}">
     <meta name="theme-color" content="#ffffff">
-
-    <!-- ===============================================-->
-    <!--    Stylesheets-->
-    <!-- ===============================================-->
     <link href="{% static 'css/theme.min.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/zoom.css' %}" rel="stylesheet" />
-    
-    
-    
-    
-
     
   </head>
 
@@ -47,20 +37,40 @@
         <div class="container"><a class="navbar-brand d-inline-flex" href="{% url 'index'%}">
           <img class="d-inline-block" src="{% static 'images/logo.png' %}" alt="logo" width="100px" height="60px"/>
           <span class="text-1000 fs-3 fw-bold ms-2 text-gradient">Stifado</span></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
+
           <div class="collapse navbar-collapse border-top border-lg-0 my-2 mt-lg-0" id="navbarSupportedContent">
             <div class="mx-auto pt-5 pt-lg-0 d-block d-lg-none d-xl-block">
-              <p class="mb-0 fw-bold text-lg-center">Deliver to: <i class="fas fa-map-marker-alt text-warning mx-2"></i><span class="fw-normal">Current Location </span><span>Mirpur 1 Bus Stand, Dhaka</span></p>
+              <p class="mb-0 fw-bold text-lg-center">Deliver to: <i class="fas fa-map-marker-alt text-warning mx-2"></i><span class="fw-normal">Current Location </span><span>{{ data.city }}</span><span>{{ data.country }}</span></p>
             </div>
             <form class="d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" action="#">
             <div class="input-group-icon pe-4"><i class="fas fa-search input-box-icon text-primary"></i><input class="form-control border-0 input-box bg-100" type="search" placeholder="Search Food" aria-label="Search" /></div>
             </form>
-            <button class="btn btn-white  text-dark d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" onclick=location.href="{% url 'login'%}"> <i class="fas fa-user text-warning me-2"></i>Login</button>
-            <button class="btn btn-white  text-dark d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" onclick=location.href="{% url 'signup'%}"> <i class="fas fa-user text-warning me-2"></i>Signup</button>
-            <button class="btn btn-white  text-dark d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" onclick=location.href="{% url 'cart'%}"> <i class="fas fa-shopping-bag text-warning me-2"></i>Cart <span class="badge rounded-pill badge-notification bg-danger">7</span></button>
+            {% if user.is_authenticated %}
+            <form action="{% url 'logout_user' %}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-outline-primary  text-dark d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" onclick=location.href="{% url 'logout'%}"> <i class="fas fa-user text-warning me-2"></i>Logout</button>
+            </form>
+            <button class="btn btn-outline-danger  text-dark d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" onclick=location.href="{% url 'cart'%}"> <i class="fas fa-shopping-bag text-warning me-2"></i>Cart <span class="badge rounded-pill badge-notification bg-danger">7</span></button>
+            
+            {% else %}
+            <button class="btn btn-outline-danger text-dark d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" onclick=location.href="{% url 'login'%}"> <i class="fas fa-user text-warning me-2"></i>Login</button>
+            <button class="btn btn-outline-danger text-dark d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" onclick=location.href="{% url 'register'%}"> <i class="fas fa-user text-warning me-2"></i>Signup</button>
+            
+            {% endif %}
             </div>
         </div>
       </nav>
-      {% block content %} {% endblock %}
+   {% if messages %}
+   {% for message in messages %}
+   <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+   <span aria-hidden="true">&times;</span>
+   </button>
+   </div>
+   {% endfor %}
+   {% endif %}
+   {% block content %} {% endblock %}
 
 
       <section class="py-0 pt-7 bg-1000">
@@ -120,13 +130,9 @@
           <hr class="border border-800" />
           <div class="row flex-center pb-3">
             <div class="col-md-6 order-0">
-              <p class="text-200 text-center text-md-start">All rights Reserved &copy; Stifado Company, 2024</p>
+              <p class="text-200 text-center text-md-start">All rights Reserved &copy; Stifado Company 2024</p>
             </div>
-            <div class="col-md-6 order-1">
-              <p class="text-200 text-center text-md-end"> Made with&nbsp;<svg class="bi bi-suit-heart-fill" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#FFB30E" viewBox="0 0 16 16">
-                  <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
-                </svg>&nbsp;by&nbsp;<a class="text-200 fw-bold" href="#" target="_blank">Stifado </a></p>
-            </div>
+           
           </div>
         </div><!-- end of .container-->
       </section><!-- <section> close ============================-->
@@ -151,7 +157,9 @@
     <script src="{% static 'js/theme.js'%}"></script>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 
 </html>

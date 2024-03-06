@@ -131,4 +131,6 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/media/'
-
+LOGIN_URL ='/sign_in/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_URL ='/logout'
