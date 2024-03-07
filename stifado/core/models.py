@@ -1,16 +1,12 @@
 from django.db import models
 
-# prodect models
-# class prodect (models.model):
-#     LIVE = 1
-#     DELETE = 0
-#     DELETE_CHOICES = ((LIVE,'live'),(DELETE,'delete'))
-#     title = models.CharField( max_length=255)
-#     price = models.FloatField()
+
+# class prodect (models.Model):
+#     name = models.CharField( max_length=100)
+#     price = models.FloatField(default=0,float_places=2,max_digits=6)
 #     description= models.TextField()
+#     category = models.ForeignKey(category,on_delete=models.CASCADE,default=1)
 #     image= models.ImageField(upload_to="/uplode")
-#     priority =models.IntegerField(default=0)
-#     delete_status= models.IntegerField(choices=DELETE_CHOICES,default='live')
 #     created_at = models.DateTimeField(auto_now_add=True)
 #     upadated_at = models.DateTimeField(auto_now=True)
 
