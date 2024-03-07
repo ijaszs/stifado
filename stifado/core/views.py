@@ -66,5 +66,6 @@ def prodect_list(request):
     return render(request,"prodect_list.html") 
 
 
-
+def checkout(request):
+   return render(request,'checkout.html')
    
