@@ -1,0 +1,37 @@
+
+{% extends "base.html" %} 
+{% load static %}
+{% block content %}
+
+
+  <div class="container">
+    <div class="row justify-content-center login-container">
+      <div class="col-md-5 mt-5 mb-8">
+        <div class="card">
+          <h6 class="fw-bold  text-center fs-2 fs-lg-2 lh-sm my-3">Register</h6>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="card-body">    
+              <form action="" method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+              {{ form.errors }}
+              {{ form.label_tag }} {{form}}
+              </div><br>
+              <button  type="submit" class="btn btn-danger btn-lg btn-block" role="button">Login</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+ {% endblock %}
