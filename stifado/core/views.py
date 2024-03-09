@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate,logout
-
+from .models import *
 # Create your views here.
 
 def index(request):
@@ -39,8 +39,12 @@ def signup(request):
 def cart(request):
     return render(request,"cart.html") 
 
-def prodect_list(request):
-    return render(request,"prodect_list.html") 
+def product_list(request):
+    data = Products.objects.all()
+    context={
+        'product_list' : data
+    }
+    return render(request,"product_list.html",context)  
 
 
 def checkout(request):
