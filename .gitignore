@@ -1,2 +1,6 @@
 foodvenv
 stifado/core/__pycache__
+stifado/core/migrations
+stifado/delivery/migrations
+stifado/stifado/__pycache__
+stifado/db.sqlite3
