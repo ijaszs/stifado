@@ -1,22 +1,11 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
-
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- ===============================================-->
-    <!--    Document Title-->
-    <!-- ===============================================-->
-    <title>Stifado | Delivery </title>
-
-    <!-- ===============================================-->
-    <!--    Favicons-->
-    <!-- ===============================================-->
-    
+    <title>Stifado | Delivery </title> 
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png'%}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png'%}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png'%}">
@@ -25,7 +14,9 @@
     <meta name="msapplication-TileImage" content="{% static 'images/mstile-150x150.png'%}">
     <meta name="theme-color" content="#ffffff">
     <link href="{% static 'css/theme.min.css' %}" rel="stylesheet" />
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -34,40 +25,35 @@
     <!-- ===============================================-->
     <main class="main" id="top">
       <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
-        <div class="container"><a class="navbar-brand d-inline-flex" href="{% url 'index'%}">
-          <img class="d-inline-block" src="{% static 'images/logo.png' %}" alt="logo" width="100px" height="60px"/>
+        <div class="container"><a class="navbar-brand d-inline-flex" href="{% url 'index'%}">    
           <span class="text-1000 fs-3 fw-bold ms-2 text-gradient">Stifado</span></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
-
           <div class="collapse navbar-collapse border-top border-lg-0 my-2 mt-lg-0" id="navbarSupportedContent">
             <div class="mx-auto pt-5 pt-lg-0 d-block d-lg-none d-xl-block">
-              <p class="mb-0 fw-bold text-lg-center">Deliver to: <i class="fas fa-map-marker-alt text-warning mx-2"></i><span class="fw-normal">Current Location </span><span>{{ data.city }}</span><span>{{ data.country }}</span></p>
+              <p class="mb-0 fw-bold text-lg-center">Deliver to: <i class="fas fa-map-marker-alt text-warning mx-2"></i><span class="fw-normal">Current Location </span><span>Mirpur 1 Bus Stand, Dhaka </span></p>
             </div>
             <form class="d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" action="#">
             <div class="input-group-icon pe-4"><i class="fas fa-search input-box-icon text-primary"></i><input class="form-control border-0 input-box bg-100" type="search" placeholder="Search Food" aria-label="Search" /></div>
             </form>
             {% if user.is_authenticated %}
-            <form action="{% url 'logout_user' %}" method="post">
-            {% csrf_token %}
-            <button class="btn btn-outline-primary  text-dark d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" onclick=location.href="{% url 'logout'%}"> <i class="fas fa-user text-warning me-2"></i>Logout</button>
+            
+            <form action="{% url 'logout' %}" method="POST" class="form-inline">
+              {% csrf_token %}
+            <span class="fw-bold ">{{ request.user | title }}</span>
+            <button class="btn btn-white shadow-warning text-warning" type="submit"> <i class="fas fa-user text-warning me-2"></i>Logout</button>
             </form>
-            <button class="btn btn-outline-danger  text-dark d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" onclick=location.href="{% url 'cart'%}"> <i class="fas fa-shopping-bag text-warning me-2"></i>Cart <span class="badge rounded-pill badge-notification bg-danger">7</span></button>
-            
+            <button class="btn btn-white shadow-warning text-warning" onclick=location.href="{% url 'cart'%}"> <i class="fas fa-shopping-bag text-warning me-2"></i>Cart <span class="badge rounded-pill badge-notification bg-danger">7</span></button>
             {% else %}
-            <button class="btn btn-outline-danger text-dark d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" onclick=location.href="{% url 'login'%}"> <i class="fas fa-user text-warning me-2"></i>Login</button>
-            <button class="btn btn-outline-danger text-dark d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0" onclick=location.href="{% url 'register'%}"> <i class="fas fa-user text-warning me-2"></i>Signup</button>
-            
+            <button class="btn btn-white shadow-warning text-warning" onclick=location.href="{% url 'login'%}"> <i class="fas fa-user text-warning me-2"></i>Login</button>
+            <button class="btn btn-white shadow-warning text-warning" onclick=location.href="{% url 'register'%}"> <i class="fas fa-user text-warning me-2"></i>Signup</button>
             {% endif %}
             </div>
         </div>
       </nav>
    {% if messages %}
    {% for message in messages %}
-   <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    {{ message }}
-   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-   <span aria-hidden="true">&times;</span>
-   </button>
-   </div>
+   <div class="alert alert-success" role="alert">
+    <strong>{{ message }}</strong> 
+  </div>
    {% endfor %}
    {% endif %}
    {% block content %} {% endblock %}

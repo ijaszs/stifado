@@ -1,49 +1,30 @@
-
 {% extends "base.html" %} 
 {% load static %}
+{% load bootstrap4 %} 
 {% block content %}
-{% if user.is_authenticated %}
-<h1 class="display-1 fs-md-5 fs-lg-6 fs-xl-8 text-dark"> Your already loged in </h1>
-{% else %}
-{% if messages %}
+{% if messages %} 
 {% for message in messages %}
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  {{ message }}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+<div class="alert alert-warning" role="alert">
+<strong>{{ message }}</strong> 
 </div>
 {% endfor %}
 {% endif %}
-<div class="container">
+<div class="container ">
   <div class="row justify-content-center login-container">
-      <div class="col-md-5 mt-6">
+    <div class="col-lg-4 mt-5 mb-8">
       <div class="card">
         <h6 class="fw-bold  text-center fs-2 fs-lg-2 lh-sm my-3">Login</h6>
-          <div class="card-body">
-          <form method="POST">
-            {% csrf_token %}
-              <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control input-box form-foodwagon-control" id="username" name="username" placeholder="Enter username" required>
-              </div>
-              <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control input-box form-foodwagon-control" id="password" name= "password" placeholder="Password" required>
-              </div><br>
-              
-              <button  type="submit" class="btn btn-white btn-block" style="color: #fff ; border-color: #F17228; background-color: #F17228;">Login</button>
-              <div class="text-center">
-                <p> Not a member? <br>
-                  <a href="{% url 'register'%}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Register</a></p>
-                
-              </div>
-          </form>
+          <div class="card-body">    
+            <form  method="POST">
+             {% csrf_token %}
+              {% bootstrap_form form %}
+              <br>
+             <button  type="submit" class="btn btn-danger btn-lg btn-block" >Login</button>
+             <p class=" text-center mt-3">New to stifado? <span><a href="{% url 'register'%}" class="link-danger">Register</a></p>
+            </form>
           </div>
+        </div>
       </div>
-      </div>
+    </div>
   </div>
-  </div>
-   
- {% endif %}
- {% endblock %}
+{% endblock %}

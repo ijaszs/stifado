@@ -1,20 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser
 
 
-# class prodect (models.Model):
-#     name = models.CharField( max_length=100)
-#     price = models.FloatField(default=0,float_places=2,max_digits=6)
-#     description= models.TextField()
-#     category = models.ForeignKey(category,on_delete=models.CASCADE,default=1)
-#     image= models.ImageField(upload_to="/uplode")
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     upadated_at = models.DateTimeField(auto_now=True)
-
-
-#     def __str__(self) :
-#         return self.title
-    
-
+# multiple user uerand admin
+# class User(AbstractBaseUser):
+#     is_admin= models.BooleanField('is admin',default=False)
+#     email = models.EmailField('email address', unique=True)
+#     USERNAME_FIELD = 'email'
 
 
 

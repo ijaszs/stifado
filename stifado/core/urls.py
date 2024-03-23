@@ -2,13 +2,12 @@
 from django.urls import path,include
 from django.contrib.auth import views as auth_views
 from . import views
-from django.conf import settings
-from django.conf.urls.static import static 
+
 urlpatterns = [
         path('', views.index, name='index'),
         path('register_user/',views.register_user,name='register'),
-        path('log_in/',views.login_user,name='login'),
-        path('log_out/',views.logout_user,name='logout_user'),
+        path('log_in/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+        path('logout/', auth_views.LogoutView.as_view(), name='logout'),
         path('cart/',views.cart,name='cart'),
         path('prodect_list/',views.prodect_list,name='prodectlist'),
 
@@ -18,6 +17,6 @@ urlpatterns = [
 
 
 
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
 
