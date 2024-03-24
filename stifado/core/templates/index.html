@@ -17,7 +17,7 @@
          <section class="py-5 overflow-hidden " id="home">
            <div class="container">
              <div class="row flex-center">
-               <div class="col-md-5 col-lg-6 order-0 order-md-1 mt-8 mt-md-0"><a class="img-landing-banner" href="{% url 'prodectlist'%}"><img class="img-fluid" src="{% static 'images/delicious-pizza-png.png' %}" alt="hero-header" /></a></div>
+               <div class="col-md-5 col-lg-6 order-0 order-md-1 mt-8 mt-md-0"><a class="img-landing-banner" href="{% url 'product_list'%}"><img class="img-fluid" src="{% static 'images/delicious-pizza-png.png' %}" alt="hero-header" /></a></div>
                <div class="col-md-7 col-lg-6 py-8 text-md-start text-center">
                  <h1 class="display-1 fs-md-5 fs-lg-6 fs-xl-8 text-gradient" class="text-1000 fs-3 fw-bold ms-2 text-gradient">Are you starving?</h1>
    
@@ -59,12 +59,12 @@
               <div class="row h-100 gx-2 mt-7">
                 <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
                   <div class="card card-span h-100  " id="zeffect">
-                    <div class="position-relative"> <img class="img-fluid rounded-3 w-100" src="{% static 'images/discount-item-1.png' %}" alt="..." />
+                    {% for restaurant in restaurants %}
+                    <div class="position-relative"> 
+                      <img class="img-fluid rounded-3 w-100" src="media/{{ restaurant.image }}" alt="restaurant_images" />
                       <div class="position-absolute top-0 end-0 mt-3 me-3">
                         <i class="fa fa-heart "></i>
                       </div>
-
-
                       <div class="card-actions">
                         <div class="badge badge-foodwagon bg-dark p-2 opacity-75">
                           <div class="d-flex flex-between-center">
@@ -76,107 +76,24 @@
                         </div>
                       </div>
                     </div>
-
-
                     <div class="card-body px-0 ">
-                      <h5 class="fw-bold text-1000 text-truncate">KFC</h5> 
-                      <p class="card-text">Burger, Fast Food, Biryani, Desserts, Beverages</p>
-                      <span class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">Closed</span></span>
-                    </div><a class="stretched-link" href="{% url 'prodectlist' %}"></a>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-                  <div class="card card-span h-100  " id="zeffect">
-                    <div class="position-relative"> <img class="img-fluid rounded-3 w-100" src="{% static 'images/discount-item-1.png' %}" alt="..." />
-                      <div class="position-absolute top-0 end-0 mt-3 me-3">
-                        <i class="fa fa-heart "></i>
-                      </div>
-
-
-                      <div class="card-actions">
-                        <div class="badge badge-foodwagon bg-dark p-2 opacity-75">
-                          <div class="d-flex flex-between-center">
-                            <div class="text-white fs-5">10</div>
-                            <div class="d-block text-white fs-1">% <br />
-                              <div class="fw-normal fs-1 mt-1">Off</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="card-body px-0 ">
-                      <h5 class="fw-bold text-1000 text-truncate">KFC</h5> 
-                      <p class="card-text">Burger, Fast Food, Biryani, Desserts, Beverages</p>
-                      <span class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">Closed</span></span>
-                    </div><a class="stretched-link" href="{% url 'prodectlist' %}"></a>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-                  <div class="card card-span h-100  " id="zeffect">
-                    <div class="position-relative"> <img class="img-fluid rounded-3 w-100" src="{% static 'images/discount-item-1.png' %}" alt="..." />
-                      <div class="position-absolute top-0 end-0 mt-3 me-3">
-                        <i class="fa fa-heart "></i>
-                      </div>
-
-
-                      <div class="card-actions">
-                        <div class="badge badge-foodwagon bg-dark p-2 opacity-75">
-                          <div class="d-flex flex-between-center">
-                            <div class="text-white fs-5">10</div>
-                            <div class="d-block text-white fs-1">% <br />
-                              <div class="fw-normal fs-1 mt-1">Off</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="card-body px-0 ">
-                      <h5 class="fw-bold text-1000 text-truncate">KFC</h5> 
-                      <p class="card-text">Burger, Fast Food, Biryani, Desserts, Beverages</p>
-                      <span class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">Closed</span></span>
-                    </div><a class="stretched-link" href="{% url 'prodectlist' %}"></a>
-                  </div>
-                </div>
-                <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-                  <div class="card card-span h-100  " id="zeffect">
-                    <div class="position-relative"> <img class="img-fluid rounded-3 w-100" src="{% static 'images/discount-item-1.png' %}" alt="..." />
-                      <div class="position-absolute top-0 end-0 mt-3 me-3">
-                        <i class="fa fa-heart "></i>
-                      </div>
-
-
-                      <div class="card-actions">
-                        <div class="badge badge-foodwagon bg-dark p-2 opacity-75">
-                          <div class="d-flex flex-between-center">
-                            <div class="text-white fs-5">10</div>
-                            <div class="d-block text-white fs-1">% <br />
-                              <div class="fw-normal fs-1 mt-1">Off</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="card-body px-0 ">
-                      <h5 class="fw-bold text-1000 text-truncate">KFC</h5> 
-                      <p class="card-text">Burger, Fast Food, Biryani, Desserts, Beverages</p>
-                      <span class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">Closed</span></span>
-                    </div><a class="stretched-link" href="{% url 'prodectlist' %}"></a>
+                      <h5 class="fw-bold text-1000 text-truncate">{{ restaurant.name }}</h5> 
+                      <p class="card-text">{{ restaurant.description }}</p>
+                      {% if restaurant.status == 0 %}
+                          <span class="badge bg-soft-success py-2 px-3"><span class="fs-1 text-success">Open</span></span>
+                      {% endif %}
+                      {% if restaurant.status == 1 %}
+                          <span class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">Closed</span></span>
+                      {% endif %}
+                    </div><a class="stretched-link" href="{% url 'product_list' %}"></a>
+                    {% endfor %}
                   </div>
                 </div>
               </div>
-            </div><!-- end of .container--> 
-          </section><!-- <section> close ============================-->
-         <!-- ============================================-->
-   
-         
-   
-         <!-- ============================================-->
+            </div>
+            <!-- end of .container--> 
+          </section>
+          <!-- <section> close -->
          <!-- <section> begin working instrections like a user manual ============================-->
          <section class="py-0 bg-primary-gradient">
            <div class="container">

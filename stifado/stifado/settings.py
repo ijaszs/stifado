@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'stifado.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'db_stifado', 
+        'NAME': 'stifado_db', 
         'USER': 'root',  
-        'PASSWORD': 'muhammedijas123', 
+        'PASSWORD': '', 
         'HOST': '127.0.0.1',  
         'PORT': '3306',  
     
@@ -129,8 +129,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 LOGIN_URL = '/log_in/'
 LOGIN_REDIRECT_URL = '/'

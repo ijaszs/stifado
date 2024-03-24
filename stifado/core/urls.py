@@ -1,22 +1,18 @@
-
-from django.urls import path,include
+from django.urls import path
+from .views.user_views import register_user
+from .views.product_views import product_list, cart
+from .views.general_views import index
 from django.contrib.auth import views as auth_views
-from . import views
+
 
 urlpatterns = [
-        path('', views.index, name='index'),
-        path('register_user/',views.register_user,name='register'),
-        path('log_in/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-        path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-        path('cart/',views.cart,name='cart'),
-        path('prodect_list/',views.prodect_list,name='prodectlist'),
+    path('', index, name='index'),
+    path('register/', register_user, name='register'),
+    path('cart/', cart, name='cart'),
+    path('products/',product_list, name='product_list'),
+    path('log_in/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
 
-
-
-
-
-
-
+    # Add other URL patterns as needed
 ]
 
 
