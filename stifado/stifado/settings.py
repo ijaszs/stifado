@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'core',
+
     
     
 ]
@@ -74,6 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'stifado.wsgi.application'
+AUTH_USER_MODEL = 'core.CustomUser'  
 
 
 # Database
@@ -82,9 +84,9 @@ WSGI_APPLICATION = 'stifado.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'db_stifado', 
+        'NAME': 'stifado_db', 
         'USER': 'root',  
-        'PASSWORD': 'muhammedijas123', 
+        'PASSWORD': '', 
         'HOST': '127.0.0.1',  
         'PORT': '3306',  
     

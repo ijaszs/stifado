@@ -17,7 +17,10 @@
           <div class="card-body">    
             <form  method="POST">
              {% csrf_token %}
-              {% bootstrap_form form %}
+              {% bootstrap_form_errors form %}
+              {% bootstrap_label "Email" %}
+              {% bootstrap_field form.username show_label=False placeholder="Email" %}
+              {% bootstrap_field form.password %}
               <br>
              <button  type="submit" class="btn btn-danger btn-lg btn-block" >Login</button>
              <p class=" text-center mt-3">New to stifado? <span><a href="{% url 'register'%}" class="link-danger">Register</a></p>

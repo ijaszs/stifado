@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login
 from django.contrib import messages
 from . models import Restaurant,Product
+from .forms import CustomUserCreationForm
+
 
 def index(request):
     #Retrieve all the restaurants
@@ -23,18 +24,17 @@ def cart(request):
     return render(request,"cart.html") 
 
 
-
 def register_user(request):
-    form = UserCreationForm()
     if request.method == "POST":
-       form = UserCreationForm(request.POST)
-       if form.is_valid():
-          form.save()
-          username = form.cleaned_data['username']
-          password = form.cleaned_data['password1']
-          user = authenticate(request, username=username, password=password)
-          login(request,user)
-          messages.success(request,("You have successfully registered  welcome !"))
-          return redirect ('index')
-
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "You have successfully registered. Welcome!")
+            return redirect('index') 
+        else:
+            print(form.errors)
+    else:
+        form = CustomUserCreationForm()
+    
     return render(request, 'register.html', {'form': form})
