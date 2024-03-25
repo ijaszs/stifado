@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'core',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -79,9 +82,9 @@ WSGI_APPLICATION = 'stifado.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'stifado_db', 
+        'NAME': 'db_stifado', 
         'USER': 'root',  
-        'PASSWORD': '', 
+        'PASSWORD': 'muhammedijas123', 
         'HOST': '127.0.0.1',  
         'PORT': '3306',  
     

@@ -11,6 +11,13 @@ class Restaurant(models.Model):
     status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+            
+    def __str__(self):
+      return self.name
+
+
+    
+
 
 class Product(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
@@ -21,3 +28,6 @@ class Product(models.Model):
     image = models.ImageField(upload_to='product_images/', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+      return self.name

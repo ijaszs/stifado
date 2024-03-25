@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\ijasb\Desktop\fastfood\foodvenv
+set VIRTUAL_ENV=C:\Users\ijasb\OneDrive\Desktop\fastfood\foodvenv
 
 if not defined PROMPT set PROMPT=$P$G
 
