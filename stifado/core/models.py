@@ -2,15 +2,11 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 
 
-
+# Restaurant model
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=255)
-    rating = models.DecimalField(max_digits=3, decimal_places=2)
-    image = models.ImageField(upload_to="restaurant_images" ,null=True,blank=True)  
-    delivery_time = models.CharField(max_length=50,null=True, blank=True)
-    offers = models.BooleanField(default=False)
-    location = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
     status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -18,7 +14,7 @@ class Restaurant(models.Model):
     def __str__(self):
       return self.name 
 
-
+#Product model
 class Product(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     type = models.BooleanField()
@@ -32,6 +28,18 @@ class Product(models.Model):
     def __str__(self):
       return self.name
 
+# Image model
+class Image(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="restaurant_images", null=True,blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+      return self.image
+    
+
+# Custom user model
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -65,3 +73,25 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+# User Rating model  
+class Rating(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    rating_value = models.DecimalField(max_digits=3, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('restaurant', 'user')
+
+# Offers model
+class Offer(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    offer_description = models.CharField(max_length=255)
+    offer_validity_start = models.DateTimeField()
+    offer_validity_end = models.DateTimeField()
+    offer_terms = models.TextField()
+
+    def __str__(self):
+        return self.offer_description

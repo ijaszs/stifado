@@ -14,10 +14,11 @@ def index(request):
 
 
 # Product list page views
-def product_list(request):
+def product_list(request, id):
     # Retreiving products
-    products = Product.objects.all()
-    return render(request,"product_list.html", {'products': products}) 
+    products = Product.objects.filter(restaurant__id=id)
+    return render(request,"product_list.html", {'products': products})
+
 
 
 # Cart views

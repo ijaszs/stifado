@@ -84,9 +84,9 @@ AUTH_USER_MODEL = 'core.CustomUser'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'db_new', 
+        'NAME': 'stifado_db', 
         'USER': 'root',  
-        'PASSWORD': 'muhammedijas123', 
+        'PASSWORD': '', 
         'HOST': '127.0.0.1',  
         'PORT': '3306',  
     
