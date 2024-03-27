@@ -5,12 +5,12 @@ from django.db import models
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(max_length=255)
     rating = models.DecimalField(max_digits=3, decimal_places=2)
-    image = models.ImageField(upload_to='restaurant_images/')  
+    image = models.ImageField(upload_to="restaurant_images" ,null=True,blank=True)  
     delivery_time = models.CharField(max_length=50,null=True, blank=True)
     offers = models.BooleanField(default=False)
-    location = models.TextField()
+    location = models.CharField(max_length=255)
     status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -24,8 +24,8 @@ class Product(models.Model):
     type = models.BooleanField()
     name = models.CharField(max_length=100)
     description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = models.ImageField(upload_to='product_images/', null=True)
+    price = models.IntegerField()
+    image = models.ImageField(upload_to="prodect_images" ,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

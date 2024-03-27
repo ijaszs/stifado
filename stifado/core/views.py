@@ -7,9 +7,10 @@ from .forms import CustomUserCreationForm
 
 def index(request):
     #Retrieve all the restaurants
-    restaurants = Restaurant.objects.all()
+    restaurants = Restaurant.objects.all() 
+    products = Product.objects.all()
    
-    return render(request, "index.html", { 'restaurants': restaurants})
+    return render(request, "index.html", { 'restaurants': restaurants,'products': products})
 
 
 # Product list page views
@@ -21,7 +22,8 @@ def product_list(request):
 
 # Cart views
 def cart(request):
-    return render(request,"cart.html") 
+    products = Product.objects.all()
+    return render(request,"cart.html",{'products': products}) 
 
 
 def register_user(request):

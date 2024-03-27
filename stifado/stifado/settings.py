@@ -84,9 +84,9 @@ AUTH_USER_MODEL = 'core.CustomUser'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'stifado_db', 
+        'NAME': 'db_new', 
         'USER': 'root',  
-        'PASSWORD': '', 
+        'PASSWORD': 'muhammedijas123', 
         'HOST': '127.0.0.1',  
         'PORT': '3306',  
     
@@ -128,15 +128,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_URL = '/static/'
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = BASE_DIR / 'uploads'
 LOGIN_URL = '/log_in/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'index'
