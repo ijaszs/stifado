@@ -35,10 +35,9 @@
             <div class="input-group-icon pe-4"><i class="fas fa-search input-box-icon text-primary"></i><input class="form-control border-0 input-box bg-100" type="search" placeholder="Search Food" aria-label="Search" /></div>
             </form>
             {% if user.is_authenticated %}
-            
             <form action="{% url 'logout' %}" method="POST" class="form-inline">
               {% csrf_token %}
-            <span class="fw-bold ">{{ request.user | title }}</span>
+            <span class="text-small">{{ request.user }}</span>
             <button class="btn btn-white shadow-warning text-warning" type="submit"> <i class="fas fa-user text-warning me-2"></i>Logout</button>
             </form>
             <button class="btn btn-white shadow-warning text-warning" onclick=location.href="{% url 'cart'%}"> <i class="fas fa-shopping-bag text-warning me-2"></i>Cart <span class="badge rounded-pill badge-notification bg-danger">7</span></button>
