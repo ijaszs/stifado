@@ -17,7 +17,7 @@ class Restaurant(models.Model):
 #Product model
 class Product(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    type = models.BooleanField()
+    dietary_choices = models.BooleanField()
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.IntegerField()
@@ -95,3 +95,16 @@ class Offer(models.Model):
 
     def __str__(self):
         return self.offer_description
+
+# Category model
+class Category(models.Model):
+    Product =  models.ForeignKey(Product, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="categories_images", null=True,blank=True)
+    slug = models.SlugField(unique=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+            return self.name
