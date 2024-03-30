@@ -12,7 +12,7 @@ def index(request):
     context =  { 'restaurants': restaurants,
                 'products': products
                 }
-    return render(request, "index.html",context)
+    return render(request, "index.html", context)
 
 
 # Product list page views
