@@ -9,7 +9,10 @@ def index(request):
     restaurants = Restaurant.objects.all()
     
     products = Product.objects.all()
-    return render(request, "index.html", {'restaurants': restaurants, 'products': products})
+    context =  { 'restaurants': restaurants,
+                'products': products
+                }
+    return render(request, "index.html",context)
 
 
 # Product list page views
@@ -22,7 +25,6 @@ def product_list(request, id):
     product_count = products.count()
 
     return render(request,"product_list.html", {'products': products, 'product_count': product_count})
-
 
 
 # Cart views
@@ -45,3 +47,8 @@ def register_user(request):
         form = CustomUserCreationForm()
     
     return render(request, 'register.html', {'form': form})
+
+
+def checkout(request):
+    products = Product.objects.all()
+    return render(request,"checkout.html",{'products': products}) 
