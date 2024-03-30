@@ -13,4 +13,3 @@ urlpatterns = [
     # Add other URL patterns as needed
 ]
 
-

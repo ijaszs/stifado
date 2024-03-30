@@ -21,7 +21,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.IntegerField()
-    image = models.ImageField(upload_to="prodect_images" ,null=True,blank=True)
+    image = models.ImageField(upload_to="product_images" ,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -36,7 +36,7 @@ class Image(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-      return self.image
+        return self.image.url if self.image else 'No Image'
     
 
 # Custom user model

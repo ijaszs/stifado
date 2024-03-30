@@ -7,11 +7,8 @@
         <div class="col-md-8 mt-6">
           <div class="card mb-4  shadow-lg">
             <div class="card-header py-3">
-              <h5 class="mb-0"> items <span class="badge text-bg-primary rounded-pill bg-danger">14</span></h5>
+              <h5 class="mb-0"> Items <span class="badge text-bg-primary rounded-pill bg-danger">{{ product_count }}</span></h5>
             </div>
-
-
-
             <div class="card-body">
               {% for product in products %}
               <div class="row ">
@@ -29,7 +26,7 @@
                   <p class="text-start text-md-center">
                     <strong>₹{{ product.price }}</strong>
                   </p>
-                  <a class="btn btn-lg btn-danger" href="{% url 'cart'%}">add to cart </a>
+                  <a class="btn btn-lg btn-danger" href="{% url 'cart'%}">Add to cart </a>
                 </div>
               </div>
               <hr class="my-4" />

@@ -17,15 +17,11 @@
   <div class="container">
     <div class="row flex-center">
       <div class="col-md-5 col-lg-6 order-0 order-md-1 mt-8 mt-md-0">
-        {% for restaurants in restaurant %}
-        <a class="img-landing-banner" href="{% url 'product_list' id=restaurant.id %}">
-        {% endfor %}
-        <img class="img-fluid"src="{% static 'images/delicious-pizza-png.png' %}" alt="hero-header" /></a>
-      </div>
+          <img class="img-fluid img-landing-banner" src="{% static 'images/delicious-pizza-png.png' %}" alt="hero-header"/>
+      </div> 
       <div class="col-md-7 col-lg-6 py-8 text-md-start text-center">
         <h1 class="display-1 fs-md-5 fs-lg-6 fs-xl-8 text-gradient" class="text-1000 fs-3 fw-bold ms-2 text-gradient">
           Are you starving?</h1>
-
         <h1 class="text-800 mb-5 fs-4">Within a few clicks, find meals that<br class="d-none d-xxl-block" />are
           accessible near you</h1>
         <div class="card w-xxl-75">
@@ -81,7 +77,9 @@
       <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
         <div class="card card-span h-100  " id="zeffect">
           <div class="position-relative">
-            <img class="img-fluid rounded-3 w-100" src="{{ restaurant.image.url}}" alt="restaurant_images" />
+            {% for image in restaurant.image_set.all %}
+            <img class="img-fluid rounded-3 w-100" src="{{ image.image.url}}" alt="restaurant_images" />
+            {% endfor %}
             <div class="position-absolute top-0 end-0 mt-3 me-3">
               <i class="fa fa-heart "></i>
             </div>
@@ -254,26 +252,28 @@
     <div class="row gx-2">
       {% for restaurant in restaurants %}
       <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
-        <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100"
-            src="{{ restaurant.image.url}}" alt="..." />
-          <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i
-                class="fas fa-tag me-2 fs-0"></i><span class="fs-0">10% off</span></span><span
-              class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span
-                class="fs-0">{{restaurant.sub_title}}</span></span></div>
+        <div class="card card-span h-100 text-white rounded-3">
+          {% for image in restaurant.image_set.all%}
+          <img class="img-fluid rounded-3 h-100"src="{{ image.image.url}}" alt="..." />
+          {% endfor %}
+          <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0">10% off</span></span>
+            <span class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i>
+            <span class="fs-0">{{restaurant.sub_title}}</span></span>
+          </div>
           <div class="card-body ps-0">
-            <div class="d-flex align-items-center mb-3"><img class="img-fluid" src="{{restaurant.sub_images.url}}"
-                alt="" />
+            <div class="d-flex align-items-center mb-3">
               <div class="flex-1 ms-3">
                 <h5 class="mb-0 fw-bold text-1000">{{restaurant.name| title }}</h5><span class="text-primary fs--1 me-1"><i
-                    class="fas fa-star"></i></span><span class="mb-0 text-primary">{{restaurant.rating}}</span>
+                  class="fas fa-star"></i></span><span class="mb-0 text-primary">{{restaurant.rating}}</span>
               </div>
-              {% if restaurant.status == 0 %}
-              <span class="badge bg-soft-success py-2 px-3"><span class="fs-1 text-success">Open</span></span>
-              {% endif %}
-              {% if restaurant.status == 1 %}
-              <span class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">Closed</span></span>
-              {% endif %}
-            </div><a class="stretched-link" href="{% url 'product_list' id=restaurant.id %}"></a>
+          {% if restaurant.status == 0 %}
+          <span class="badge bg-soft-success py-2 px-3"><span class="fs-1 text-success">Open</span></span>
+          {% endif %}
+          {% if restaurant.status == 1 %}
+          <span class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">Closed</span></span>
+          {% endif %}
+          </div>
+          <a class="stretched-link" href="{% url 'product_list' id=restaurant.id %}"></a>
           </div>
         </div>
 

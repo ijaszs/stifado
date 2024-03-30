@@ -1,23 +1,27 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib import messages
 from . models import Restaurant,Product
 from .forms import CustomUserCreationForm
 
-
 def index(request):
     #Retrieve all the restaurants
-    restaurants = Restaurant.objects.all() 
+    restaurants = Restaurant.objects.all()
+    
     products = Product.objects.all()
-   
-    return render(request, "index.html", { 'restaurants': restaurants,'products': products})
+    return render(request, "index.html", {'restaurants': restaurants, 'products': products})
 
 
 # Product list page views
 def product_list(request, id):
     # Retreiving products
     products = Product.objects.filter(restaurant__id=id)
-    return render(request,"product_list.html", {'products': products})
+    # Retreiving restaurants count
+    restaurant = get_object_or_404(Restaurant, id=id)
+    products = Product.objects.filter(restaurant=restaurant)
+    product_count = products.count()
+
+    return render(request,"product_list.html", {'products': products, 'product_count': product_count})
 
 
 
