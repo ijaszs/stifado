@@ -17,7 +17,11 @@ class Restaurant(models.Model):
 #Product model
 class Product(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    dietary_choices = models.BooleanField()
+    DIETARY_CHOICES = [
+        ('V', 'Vegetarian'),
+        ('N', 'Non-Vegetarian'),
+    ]
+    dietary_choices = models.CharField(max_length=1, choices=DIETARY_CHOICES)
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.IntegerField()
@@ -36,7 +40,7 @@ class Image(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-      return self.image
+     return f"Image for {self.restaurant.name} - {self.created_at}"
     
 
 # Custom user model

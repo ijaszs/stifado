@@ -220,8 +220,8 @@
                     <div class="card-body ps-0">
                       <h5 class="fw-bold text-1000 text-truncate mb-1">{{product.name}}</h5>
                       <div><span class="text-warning me-2"><i class="fas fa-map-marker-alt"></i></span><span
-                          class="text-primary">{{ product.description }}</span></div><span class="text-1000 fw-bold">₹{{
-                        product.price}}</span>
+                          class="text-primary">{{ product.description }}
+                        </span></div><span class="text-1000 fw-bold">₹{{product.price}}</span>
                     </div>
                   </div>
                   <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="{% url 'cart' %}" role="button">Order now</a></div>
@@ -256,11 +256,11 @@
       <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
         <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100"
             src="{{ restaurant.image.url}}" alt="..." />
-          <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i
+            <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i
                 class="fas fa-tag me-2 fs-0"></i><span class="fs-0">10% off</span></span><span
-              class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span
+                class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span
                 class="fs-0">{{restaurant.sub_title}}</span></span></div>
-          <div class="card-body ps-0">
+            <div class="card-body ps-0">
             <div class="d-flex align-items-center mb-3"><img class="img-fluid" src="{{restaurant.sub_images.url}}"
                 alt="" />
               <div class="flex-1 ms-3">
@@ -290,7 +290,10 @@
           class="fas fa-chevron-right ms-2"> </i></a></div>
   </div>
   </div>
-</section><!-- <section> close ============================-->
+</section>
+
+
+<!-- <section> close ============================-->
 
 
 <!-- ============================================-->

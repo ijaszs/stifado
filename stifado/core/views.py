@@ -9,8 +9,10 @@ def index(request):
     #Retrieve all the restaurants
     restaurants = Restaurant.objects.all() 
     products = Product.objects.all()
-   
-    return render(request, "index.html", { 'restaurants': restaurants,'products': products})
+    context =  { 'restaurants': restaurants,
+                'products': products
+                }
+    return render(request, "index.html",context)
 
 
 # Product list page views
@@ -41,3 +43,8 @@ def register_user(request):
         form = CustomUserCreationForm()
     
     return render(request, 'register.html', {'form': form})
+
+
+def checkout(request):
+    products = Product.objects.all()
+    return render(request,"checkout.html",{'products': products}) 

@@ -9,7 +9,7 @@ urlpatterns = [
     path('cart/', views.cart, name='cart'),
     path('restaurants/<int:id>/products/',views.product_list, name='product_list'),
     path('log_in/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-
+    path('checkout/', views.checkout, name='checkout'),
     # Add other URL patterns as needed
 ]
 
