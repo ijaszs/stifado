@@ -7,7 +7,6 @@ from .forms import CustomUserCreationForm
 def index(request):
     #Retrieve all the restaurants
     restaurants = Restaurant.objects.all()
-    
     products = Product.objects.all()
     context =  { 'restaurants': restaurants,
                 'products': products

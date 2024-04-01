@@ -14,10 +14,10 @@
         <div class="card-body">
           <ul class="list-group">
             {% for product in products %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="list-group-item d-flex justify-content-between align-items-center">
               {{ product.name }}
               <span>₹{{ product.price }}</span>
-            </li>
+            </div>
             {% endfor %}
           </ul>
           <hr>
