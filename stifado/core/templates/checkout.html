@@ -5,8 +5,8 @@
 <section class="h-100 py-0 ">
     <div class="container py-5">
       <div class="row d-flex justify-content-center my-4">
-        <div class="col-md-8 mt-6">
-          <div class="card mb-4  shadow-lg">
+        <div class="col-md-8 mt-6 ">
+          <div class="card mb-0  shadow-lg">
             <div class="card-header py-3">
               <h5 class="mb-0">Cart Summary</h5>
             </div>
@@ -22,16 +22,20 @@
           </ul>
           <hr>
           <div class="d-flex justify-content-between">
-            <strong>Item Total:</strong>
-            <strong>₹420</strong>
-          </div>
-          <div class="d-flex justify-content-between">
             <span>Delivery Fee (5.6 kms):</span>
             <span>₹56</span>
           </div>
           <div class="d-flex justify-content-between">
             <span>Platform Fee:</span>
             <span>₹20</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span>restaurant Pakaging Charges:</span>
+            <span>₹20</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span>Discount:</span>
+            <span>-₹60</span>
           </div>
           <hr>
           <div class="d-flex justify-content-between">
@@ -51,11 +55,15 @@
         <div class="card-body">
           <form action="#" method="POST">
             {% csrf_token %}
-            <div class="mb-3">
+            <div class="mb-2">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-2">
               <label for="address" class="form-label">Address</label>
               <input type="text" class="form-control" id="address" name="address" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
               <label for="phone" class="form-label">Phone Number</label>
               <input type="text" class="form-control" id="phone" name="phone" required>
             </div>

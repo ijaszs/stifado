@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'core',
+    'delivery',
 
     
     
@@ -141,4 +142,7 @@ LOGIN_URL = '/log_in/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'index'
 
-
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+    
+# ]

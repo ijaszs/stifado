@@ -98,13 +98,17 @@
           <div class="card-body px-0 ">
             <h5 class="fw-bold text-1000 text-truncate">{{ restaurant.name | title }}</h5>
             <p class="card-text">{{ restaurant.description }}</p>
+            <div class="d-flex justify-content-between">
+            <h5><span  class="badge text-bg-primary  bg-success" > <i class="fas fa-star"></i>4.5</span></h5>
             {% if restaurant.status == 0 %}
             <span class="badge bg-soft-success py-2 px-3"><span class="fs-1 text-success">Open</span></span>
             {% endif %}
             {% if restaurant.status == 1 %}
             <span class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">Closed</span></span>
             {% endif %}
-          </div><a class="stretched-link" href="{% url 'product_list' id=restaurant.id %}"></a>
+          </div>
+        </div>
+          <a class="stretched-link" href="{% url 'product_list' id=restaurant.id %}"></a>
         </div>
       </div>
       {% endfor %}
