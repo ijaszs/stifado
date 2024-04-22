@@ -1,0 +1,52 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block content %}
+<section class="h-100 py-0">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center my-4">
+        <div class="col-md-8 mt-6">
+          <div class="card mb-4  shadow-lg">
+            <div class="card-header py-3">
+                {% if search %}
+                 <h5 class="mb-0"> You searched For {{ search }}  </h5>
+                {% endif %}
+            </div>
+            <div class="card-body">
+              {% for product in products %}
+              <div class="row ">
+                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                  <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                    <img class="img-fluid rounded-3 w-100" src="{{product.image.url}}"
+                      class="w-100" alt="{{ product.name}}"/>
+                    </div>  
+                    </div>
+                    <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="fw-bold text-1000 text-truncate"> {{ product.name }} </h5>
+                    <p>{{ product.description }}</p>
+                    {% if product.dietary_choices == "V" %}
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#3AB757" width="16" height="16" viewBox="0 0 20 20" aria-labelledby="icon-svg-title- icon-svg-desc-" role="img" class="sc-rbbb40-0 khXxzt">
+                    <path d="M15 10C15 12.74 12.76 15 10 15C7.24 15 5 12.74 5 10C5 7.26 7.26 5 10 5C12.74 5 15 7.24 15 10ZM20 4V16C20 18.26 18.26 20 16 20H4C1.76 20 0 18.26 0 16V4C0 1.74 1.76 0 4 0H16C18.26 0 20 1.74 20 4V4ZM18.34 4C18.34 2.74 17.26 1.66 16 1.66H4C2.76 1.66 1.66 2.74 1.66 4V16C1.66 17.26 2.76 18.34 4 18.34H16C17.26 18.34 18.34 17.26 18.34 16V4V4Z">
+                    </path></svg>   
+                    {% endif %}       
+                    {% if product.dietary_choices == "N" %}
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#BF4C43" width="16" height="16" viewBox="0 0 20 20" aria-labelledby="icon-svg-title- icon-svg-desc-" role="img" class="sc-rbbb40-0 khXxzt">
+                    <path d="M20 4V16C20 18.26 18.26 20 16 20H4C1.76 20 0 18.26 0 16V4C0 1.74 1.76 0 4 0H16C18.26 0 20 1.74 20 4ZM18.34 4C18.34 2.74 17.26 1.66 16 1.66H4C2.76 1.66 1.66 2.74 1.66 4V16C1.66 17.26 2.76 18.34 4 18.34H16C17.26 18.34 18.34 17.26 18.34 16V4Z">
+                    </path><path d="M9.99996 3.75L15.8333 14.5833H4.16663L9.99996 3.75Z"></path></svg>
+                    {% endif %}
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <p class="text-start text-md-center">
+                    <strong>₹{{ product.price }}</strong>
+                    </p>
+                    <a class="btn btn-lg btn-danger" href="{% url 'cart'%}">Add to cart </a>
+                </div>
+              </div>
+              <hr class="my-4" />
+              {% endfor %}
+            </div>
+          </div> 
+        </div> 
+      </div>
+    </div>
+  </section>
+  {% endblock %}

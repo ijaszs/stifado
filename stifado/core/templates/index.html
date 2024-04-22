@@ -82,7 +82,6 @@
             {% endfor %}
             <div class="position-absolute top-0 end-0 mt-3 ">
               <button class="btn"> <i class="fa fa-heart fa-lg"></i></button>
-              
             </div>
             <div class="card-actions">
               <div class="badge badge-foodwagon bg-dark p-2 opacity-75">
@@ -188,8 +187,7 @@
                       <span class="text-1000 fw-bold">₹{{product.price}}</span>
                     </div>
                   </div>
-                  <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="{% url 'cart' %}" role="button">Order
-                      now</a></div>
+                  <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="{% url 'cart' %}" role="button">Order now</a></div>
                   </div>
                 {% endfor %}
               </div>

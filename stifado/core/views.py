@@ -4,6 +4,7 @@ from django.contrib import messages
 from core.models import Restaurant,Product
 from core.forms import CustomUserCreationForm
 from django.http import JsonResponse
+from .models import Cart
 # home page views
 def index(request):
     #Retrieve all the restaurants
@@ -15,20 +16,9 @@ def index(request):
     return render(request, "index.html", context)
 
 
-# Product list page views
-def product_list(request, id):
-    products = Product.objects.filter(restaurant__id=id)
-    restaurant = get_object_or_404(Restaurant, id=id)
-    products = Product.objects.filter(restaurant=restaurant)
-    product_count = products.count()
-
-    return render(request,"product_list.html", {'products': products, 'product_count': product_count})
 
 
 
-def cart(request):
-    products = Product.objects.all() 
-    return render(request,"cart.html",{'products': products, }) 
 # signup views
 def register_user(request):
     if request.method == "POST":
@@ -44,6 +34,17 @@ def register_user(request):
         form = CustomUserCreationForm()
     
     return render(request, 'register.html', {'form': form})
+
+
+# Product list page views
+def product_list(request, id):
+    restaurant = get_object_or_404(Restaurant, id=id)
+    products = Product.objects.filter(restaurant=restaurant)
+    product_count = products.count()
+
+    return render(request, "product_list.html", {'products': products, 'product_count': product_count, 'restaurant': restaurant})
+
+
 
 # checkout page views
 def checkout(request):
@@ -63,9 +64,9 @@ def search_views(request):
 
 
 
-
-
-
+def cart(request):
+    products = Product.objects.all()
+    return render(request,"cart.html",{'products': products}) 
 
 
 

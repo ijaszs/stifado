@@ -17,9 +17,7 @@
             <form method="POST">
               {% csrf_token %}
               {% bootstrap_form form %}
-              {% buttons %}
-                <button type="submit" class="btn btn-danger btn-lg btn-block">Register</button>
-              {% endbuttons %}
+                <button type="submit" class="btn btn-danger btn-lg ">Register</button>
               <p class=" text-center mt-3">Alreday have an account? <apan><a href="{% url 'login'%}" class="link-danger">Login</a></p>   
             </form>
           </div>
