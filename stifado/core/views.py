@@ -4,7 +4,7 @@ from django.contrib import messages
 from core.models import Restaurant,Product
 from core.forms import CustomUserCreationForm
 from django.http import JsonResponse
-from .models import Cart
+
 # home page views
 def index(request):
     #Retrieve all the restaurants
