@@ -1,33 +1,112 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% load static %}
-{% load bootstrap4 %} 
+
 {% block content %}
-{% if messages %} 
+{% if messages %}
 {% for message in messages %}
-<div class="alert alert-warning" role="alert">
-<strong>{{ message }}</strong> 
+<div class="alert">
+  <strong>{{ message }}</strong>
 </div>
 {% endfor %}
 {% endif %}
-<div class="container ">
-  <div class="row justify-content-center login-container">
-    <div class="col-lg-4 mt-5 mb-8">
-      <div class="card">
-        <h6 class="fw-bold  text-center fs-2 fs-lg-2 lh-sm my-3">Login</h6>
-          <div class="card-body">    
-            <form  method="POST">
-             {% csrf_token %}
-              {% bootstrap_form_errors form %}
-              {% bootstrap_label "Email" %}
-              {% bootstrap_field form.username show_label=False placeholder="Email" %}
-              {% bootstrap_field form.password %}
-              <br>
-             <button  type="submit" class="btn btn-danger btn-lg btn-block" >Login</button>
-             <p class=" text-center mt-3">New to stifado? <span><a href="{% url 'register'%}" class="link-danger">Register</a></p>
-            </form>
+<style>
+
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.login-title {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-login {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    background-color: #0056b3;
+}
+
+.alert {
+    background-color: #ffc107;
+    color: black;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+</style>
+<div class="container">
+  <div class="login-container">
+    <div class="card">
+      <h2 class="login-title">Login</h2>
+      <div class="card-body">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-error">
+            {{ form.non_field_errors }}
           </div>
-        </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="username" placeholder="Email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" required>
+          </div>
+          <button type="submit" class="btn-login">Login</button>
+        </form>
+        <p class="register-link">
+          New to stifado? <a class="link-danger" href="{% url 'register' %}">Register</a>
+        </p>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}
+

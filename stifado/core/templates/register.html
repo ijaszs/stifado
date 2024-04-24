@@ -1,27 +1,106 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% load static %}
-{% load bootstrap4 %} 
 {% block content %}
-  <div class="container">
-    <div class="row justify-content-center login-container">
-      <div class="col-lg-4 mt-5 mb-8">
-        <div class="card">
-          <h6 class="fw-bold text-center fs-2 fs-lg-2 lh-sm my-3">Register</h6>
-            {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-warning" role="alert">
-              <strong>{{ message }}</strong> 
-            </div>
-            {% endfor %}
-            {% endif %}
-            <form method="POST">
-              {% csrf_token %}
-              {% bootstrap_form form %}
-                <button type="submit" class="btn btn-danger btn-lg ">Register</button>
-              <p class=" text-center mt-3">Alreday have an account? <apan><a href="{% url 'login'%}" class="link-danger">Login</a></p>   
-            </form>
-          </div>
+<style>
+  .signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center; /* Center children horizontally */
+  }
+  
+  .card {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+  }
+  
+  .btn-signup{
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-signup:hover {
+    background-color: #0056b3;
+  }
+  
+  .alert {
+    background-color: #ffc107;
+    color: black;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+  .text-center {
+    text-align: center; /* Center text */
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  
+</style>
+<div class="container">
+  <div class="row justify-content-center login-container">
+    <div class="signup-container">
+      <div class="card">
+        <h6 class="fw-bold text-center fs-2 fs-lg-2 lh-sm my-3">Register</h6>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-warning" role="alert">
+          <strong>{{ message }}</strong>
         </div>
+        {% endfor %}
+        {% endif %}
+        <form method="POST">
+          {% csrf_token %}
+          {{ form.non_field_errors }}
+          <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.email.errors }}
+          </div>
+          <div class="form-group">
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+            {{ form.password1.errors }}
+          </div>
+          <div class="form-group">
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+          </div>
+          <button type="submit" class="btn-signup">Register</button>
+          <p class="text-center mt-3">Already have an account? <span><a href="{% url 'login' %}" class="link-danger">Login</a></span></p>
+        </form>
       </div>
     </div>
- {% endblock %}
+  </div>
+</div>
+{% endblock %}
