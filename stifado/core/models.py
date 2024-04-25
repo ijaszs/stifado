@@ -1,18 +1,39 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
-
+from django.utils.timezone import now
+from django.utils import timezone
 
 # Restaurant model
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=255)
     address = models.CharField(max_length=255)
-    status = models.BooleanField(default=False)
+    opening_time = models.TimeField(default=now().replace(hour=9, minute=0, second=0, microsecond=0))  # Default to 9:00 AM
+    closing_time = models.TimeField(default=now().replace(hour=22, minute=0, second=0, microsecond=0))  # Default to 10:00 PM
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-            
+
+    def is_active(self):
+        """Return True if current time is within opening and closing times."""
+        from django.utils import timezone
+        current_time = timezone.localtime(timezone.now()).time()
+        return self.opening_time <= current_time < self.closing_time
+
     def __str__(self):
-      return self.name 
+        return self.name
+    
+class OpeningHours(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="opening_hours")
+    day_of_week = models.IntegerField()  # 0=Monday, 6=Sunday
+    open_time = models.TimeField()
+    close_time = models.TimeField()
+
+    def is_now_open(self):
+        from django.utils import timezone
+        current_time = timezone.localtime(timezone.now()).time()
+        current_weekday = timezone.localtime(timezone.now()).weekday()
+        return self.day_of_week == current_weekday and self.open_time <= current_time < self.close_time
+
 
 #Product model
 class Product(models.Model):
@@ -92,10 +113,15 @@ class Rating(models.Model):
 # Offers model
 class Offer(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    offers = models.IntegerField(default=0, help_text="Discount on the restaurant in percentage")
     offer_description = models.CharField(max_length=255)
     offer_validity_start = models.DateTimeField()
     offer_validity_end = models.DateTimeField()
-    offer_terms = models.TextField()
+
+   
+    def is_valid(self):
+        now = timezone.now()
+        return self.offer_validity_start <= now <= self.offer_validity_end
 
     def __str__(self):
         return self.offer_description

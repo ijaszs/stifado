@@ -1,15 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib import messages
-from core.models import Restaurant,Product
+from core.models import Restaurant,Product,Offer
 from core.forms import CustomUserCreationForm
 from django.http import JsonResponse
 
 # home page views
 def index(request):
     #Retrieve all the restaurants
-    restaurants = Restaurant.objects.all()
     products = Product.objects.all()
+    restaurants = Restaurant.objects.prefetch_related('offer_set').all()
+    for restaurant in restaurants:
+        restaurant.active = restaurant.is_active()
+        # Filter valid offers on the Python side; ideally, this should be done via the database for efficiency
+        valid_offers = [offer for offer in restaurant.offer_set.all() if offer.is_valid()]
+        restaurant.valid_offers = valid_offers
     context =  { 'restaurants': restaurants,
                 'products': products
                 }

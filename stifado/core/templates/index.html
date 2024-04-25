@@ -75,39 +75,45 @@
     <div class="row h-100 gx-2 mt-7">
       {% for restaurant in restaurants %}
       <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
-        <div class="card card-span h-100  " id="zeffect">
+        <div class="card {% if not restaurant.active %}grayscale{% endif %}">
+          <style>
+            .grayscale {
+                filter: grayscale(100%);
+                background-color: #f8f9fa;
+            }
+         </style>
           <div class="position-relative">
             {% for image in restaurant.image_set.all %}
             <img class="img-fluid rounded-3 w-100" src="{{ image.image.url}}" alt="restaurant_images" />
             {% endfor %}
-            <div class="position-absolute top-0 end-0 mt-3 ">
-              <button class="btn"> <i class="fa fa-heart fa-lg"></i></button>
-            </div>
+            {% for offer in restaurant.valid_offers %}
             <div class="card-actions">
               <div class="badge badge-foodwagon bg-dark p-2 opacity-75">
                 <div class="d-flex flex-between-center">
-                  <div class="text-white fs-5">10</div>
+                  <div class="text-white fs-5">{{ offer.offers }}</div>
                   <div class="d-block text-white fs-1">% <br />
                     <div class="fw-normal fs-1 mt-1">Off</div>
                   </div>
                 </div>
               </div>
             </div>
+            {% endfor %}
           </div>
           <div class="card-body px-0 ">
             <h5 class="fw-bold text-1000 text-truncate">{{ restaurant.name | title }}</h5>
             <p class="card-text">{{ restaurant.description }}</p>
             <div class="d-flex justify-content-between">
             <h5><span  class="badge text-bg-primary  bg-success" > <i class="fas fa-star"></i>4.5</span></h5>
-            {% if restaurant.status == 0 %}
-            <span class="badge bg-soft-success py-2 px-3"><span class="fs-1 text-success">Open</span></span>
-            {% endif %}
-            {% if restaurant.status == 1 %}
-            <span class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">Closed</span></span>
+            {% if restaurant.active %}
+            <span class="text-center">Open</span>
+            {% else %}
+            <span class="text-center">Closed</span>
             {% endif %}
           </div>
         </div>
+        {% if restaurant.active %}
           <a class="stretched-link" href="{% url 'product_list' id=restaurant.id %}"></a>
+        {% endif %}
         </div>
       </div>
       {% endfor %}
